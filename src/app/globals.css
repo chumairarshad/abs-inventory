@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent:       #FF6B00;
+  --accent-light: #FFF0E5;
+  --accent-dark:  #CC5500;
+  --avail-bg:     #E8F8EF;
+  --avail-border: #22C55E;
+  --avail-text:   #15803D;
+  --sold-bg:      #FEE2E2;
+  --sold-border:  #EF4444;
+  --sold-text:    #B91C1C;
+  --booked-bg:    #FEF3C7;
+  --booked-border:#F59E0B;
+  --booked-text:  #92400E;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f5f5f5;
+  color: #111;
+}
+
+/* Door animation */
+.door-wrap { perspective: 400px; }
+.door-panel {
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+}
+.door-wrap.available:hover .door-panel { transform: rotateY(-55deg); }
+.door-wrap.booked .door-panel           { transform: rotateY(-18deg); }
+
+/* Scrollbar */
+::-webkit-scrollbar       { width: 5px; height: 5px; }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 3px; }
+
+/* Toast */
+.toast {
+  transform: translateY(60px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinning { animation: spin 0.8s linear infinite; }
+
+/* Hide scrollbar on floor tabs (mobile) */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
